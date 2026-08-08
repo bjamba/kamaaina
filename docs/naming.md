@@ -28,6 +28,8 @@ The ASCII forms exist purely for tooling compatibility (shells, URLs, cross-plat
 
 - **Kū** — the name of the skill-creator tool in this ADK. The word kū carries the sense of "to stand, to be upright, steadfast." Kū is also one of the four great akua (deities) of Hawaiian tradition, associated among other things with skilled and disciplined work such as canoe building. The tool is named in that spirit: standing up new skills through careful craft, within real constraints. The name is used with respect for its cultural weight, and we welcome guidance on using it well.
 
+- **Waihona** *(proposed, pending review)* — the context-base format and its scaffold tool. *Waihona*: depository, archive, a place where valuables are kept (as in *hale waihona puke*, library). Chosen because the context-base is exactly that — the place a local stack keeps its accumulated knowledge. Spec: `design/context-base/context-base.md`.
+
 ## For contributors
 
 - When you introduce a new named artifact, add it to the glossary above with its meaning and why it was chosen.

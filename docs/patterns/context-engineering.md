@@ -31,7 +31,7 @@ Treat context the way a 1980s game developer treated RAM: a hard budget, account
 
 This is hot-swappable persistent state: the session pulls a leaf in, uses it, and lets it fall out of context when the step is done.
 
-**Existing seed:** `teach-me`'s `curriculum.json` + `TUTOR_CONTEXT.md` handoff files are a two-file proto-context-base. The generalization — an indexed hierarchy with a traversal protocol and per-leaf size limits — is tracked as the "Context-base reference design" issue.
+**Reference design:** the pattern is specified concretely as **Waihona** — on-disk format, sizing rules, traversal protocol, and write path in [`design/context-base/context-base.md`](../../design/context-base/context-base.md), with the deterministic scaffold/maintenance tool at [`tools/waihona/`](../../tools/waihona/). (`teach-me`'s `curriculum.json` + `TUTOR_CONTEXT.md` handoff files were the two-file proto-version that seeded it.)
 
 ---
 
