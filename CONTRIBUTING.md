@@ -20,7 +20,10 @@ If a contribution is neither a doc a human would read nor a tool a local stack c
 
 - **A new tool** → open a [tool proposal](.github/ISSUE_TEMPLATE/tool-proposal.md) issue *before* building: minimum tier + justification, permissions you expect to need, and which steps are deterministic. Cheap to redirect an idea; expensive to redirect a finished monolith.
 - **A pattern, research note, or doc improvement** → a [pattern write-up](.github/ISSUE_TEMPLATE/pattern-writeup.md) issue, or a PR directly for small fixes.
+- **A scoped piece of work** (implementation, research, docs) → a [work item](.github/ISSUE_TEMPLATE/work-item.md) issue. The bar: a stranger should be able to understand the problem space, build it themselves, or debate whether it's the right work at all. Sparse issues get sent back for scope.
 - **A correction** (technical, cultural, or factual) → plain issue, any format.
+
+Design work that precedes a tool gets a design doc in `design/` using [design/TEMPLATE.md](design/TEMPLATE.md) — the doc stays as the rationale record after the tool ships. PRs follow the [PR template](.github/PULL_REQUEST_TEMPLATE.md).
 
 ## PR expectations
 
