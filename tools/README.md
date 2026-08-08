@@ -6,13 +6,13 @@ Current inhabitants:
 
 - [`waihona/`](waihona/) — context-base scaffold & maintenance ([spec](../design/context-base/context-base.md)); Tier 1, `network: none`
 
-Arriving with Milestone 2: the manifest validator and Kū v0 (design in [`design/ku/`](../design/ku/)).
+Arriving with Milestone 2: the manifest validator and Loea v0 (design in [`design/loea/`](../design/loea/)).
 
 ## Required structure
 
 ```
 tools/<name>/
-├── manifest.yaml      # required — see design/ku/manifest-schema.md
+├── manifest.yaml      # required — see design/loea/manifest-schema.md
 ├── SKILL.md           # entry-point instructions (router-style; see the patterns catalog)
 ├── <operation>.md     # routed instruction files, each sized to the tier's budget
 ├── scripts/           # deterministic components declared in the manifest's not_ai block

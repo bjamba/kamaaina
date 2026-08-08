@@ -29,8 +29,8 @@ The mentality this ADK cultivates: everyone striving to be their own mechanic, t
 
 Concretely:
 
-- Every Class 2 tool carries a **manifest** declaring its tier requirements, permissions, dependencies, state files, and deterministic components — [the full schema](../design/ku/manifest-schema.md).
-- Tools **request permissions and explain themselves** before acting; grants are recorded in a human-readable file the user owns — [the permission model](../design/ku/permission-model.md).
+- Every Class 2 tool carries a **manifest** declaring its tier requirements, permissions, dependencies, state files, and deterministic components — [the full schema](../design/loea/manifest-schema.md).
+- Tools **request permissions and explain themselves** before acting; grants are recorded in a human-readable file the user owns — [the permission model](../design/loea/permission-model.md).
 - Nothing happens "under the hood" that the manifest doesn't disclose. A user should be able to read a tool's manifest and know everything it can touch before running it.
 
 ## The two artifact classes
@@ -52,4 +52,4 @@ The recurring engineering problem behind all of this is that a local model's con
 - **Compact and hot-swap** — summarize in flight, flush what's done, swap in stored context when needed.
 - **Traverse a context-base** — a knowledge base built for context: hierarchical, indexed, designed so a model can grab just what it needs.
 
-These are cataloged with worked examples in [Context Engineering Patterns](patterns/context-engineering.md), and enforced by [Kū's context-budget methodology](../design/ku/context-budget.md).
+These are cataloged with worked examples in [Context Engineering Patterns](patterns/context-engineering.md), and enforced by [Loea's context-budget methodology](../design/loea/context-budget.md).

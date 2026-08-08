@@ -15,10 +15,10 @@ The rule for this repository:
 
 | Context | Form | Example |
 |---|---|---|
-| Documentation prose, titles, headings | Proper orthography | Kamaʻāina, Kū |
-| Directory names, filenames, slugs, code identifiers | ASCII, no diacritics | `kamaaina`, `ku` |
-| Manifest `name` field | ASCII slug | `name: ku` |
-| Manifest `title` field | Proper orthography | `title: Kū` |
+| Documentation prose, titles, headings | Proper orthography | Kamaʻāina, Loea |
+| Directory names, filenames, slugs, code identifiers | ASCII, no diacritics | `kamaaina`, `loea` |
+| Manifest `name` field | ASCII slug | `name: loea` |
+| Manifest `title` field | Proper orthography | `title: Loea` |
 
 The ASCII forms exist purely for tooling compatibility (shells, URLs, cross-platform filesystems). They are not the preferred spellings — the documentation is where the names live properly, and documentation should always use the correct marks. Not knowing the marks yet is a reason to look them up, not a reason to leave them out.
 
@@ -26,7 +26,7 @@ The ASCII forms exist purely for tooling compatibility (shells, URLs, cross-plat
 
 - **Kamaʻāina** — literally "child of the land"; a person of a place, a longtime local. This project is named for the idea of building AI tooling that belongs to the machine it runs on — local-first, of the land it lives on — rather than renting capability from somewhere far away.
 
-- **Kū** — the name of the skill-creator tool in this ADK. The word kū carries the sense of "to stand, to be upright, steadfast." Kū is also one of the four great akua (deities) of Hawaiian tradition, associated among other things with skilled and disciplined work such as canoe building. The tool is named in that spirit: standing up new skills through careful craft, within real constraints. The name is used with respect for its cultural weight, and we welcome guidance on using it well.
+- **Loea** — the skill-creator tool in this ADK. *Loea*: skill, ingenuity, cleverness; a master of a craft (one speaks of a loea of lauhala weaving or of navigation). Chosen because the tool's essence is exactly that kind of mastery — expert, inventive design within hard constraints. *(Naming history: this tool was briefly named Kū at the project's founding. It was renamed both because loea is the tighter fit for a tool about skill itself, and out of respect for the weight Kū carries as one of the four great akua of Hawaiian tradition — a weight a software tool has no business borrowing. The record stays here on purpose: naming is design review, and reviews sometimes reverse.)*
 
 - **Waihona** *(proposed, pending review)* — the context-base format and its scaffold tool. *Waihona*: depository, archive, a place where valuables are kept (as in *hale waihona puke*, library). Chosen because the context-base is exactly that — the place a local stack keeps its accumulated knowledge. Spec: `design/context-base/context-base.md`.
 

@@ -16,7 +16,7 @@ labels: ["class-2", "proposal"]
 
 ## Permissions expected
 
-<!-- Least-privilege, per design/ku/manifest-schema.md:
+<!-- Least-privilege, per design/loea/manifest-schema.md:
      filesystem read/write patterns, network (default: none), exec commands. -->
 
 ## Not-AI alternatives considered

@@ -9,7 +9,7 @@ This is a v0 draft schema. A deterministic validator (`tools/manifest-validator/
 ```yaml
 # Identity
 name: string             # ASCII slug; matches the tool's directory name (see docs/naming.md)
-title: string            # proper orthography, e.g. "Kū"
+title: string            # proper orthography, e.g. "Loea"
 version: string          # semver
 artifact_class: 2        # manifests exist for Class 2 tools; the field is explicit anyway
 summary: string          # one line, human-readable
@@ -22,12 +22,12 @@ tier:
     tier: 1 | 2 | 3
     notes: string        # what still works, what the user must do manually
 
-# Context accounting — see design/ku/context-budget.md
+# Context accounting — see design/loea/context-budget.md
 context_budget:
   instructions_max_tokens: int   # ceiling on instruction text loaded simultaneously
   session_max_tokens: int        # expected peak working context of any single session
 
-# Least-privilege capability declaration — see design/ku/permission-model.md
+# Least-privilege capability declaration — see design/loea/permission-model.md
 permissions:
   filesystem:
     read: [path-patterns]        # e.g. ["./", "~/.kamaaina/context-base/"]
@@ -58,7 +58,7 @@ not_ai:
 ## Field notes
 
 - **`name` / `title`** — the slug/orthography split per the [naming rule](../../docs/naming.md). The slug is the identity in code; the title is the identity in prose.
-- **`tier.justification`** — the schema's teeth for "Kū targets the lowest tier that can do the job." A Tier 2+ minimum without a justification is a validation error, not a style complaint.
+- **`tier.justification`** — the schema's teeth for "Loea targets the lowest tier that can do the job." A Tier 2+ minimum without a justification is a validation error, not a style complaint.
 - **`context_budget`** — declared, not aspirational: `instructions_max_tokens` must cover the worst-case *simultaneous* load (router + largest routed file + its mandatory references), and must fit the declared tier's guideline in [tiers.md](../../docs/tiers.md). The [context-budget doc](context-budget.md) defines how to measure it.
 - **`permissions.network: none`** — the default and the expectation. A tool listing hosts must be doing something inherently networked (e.g. fetching a declared dataset), and use-time function must never depend on a frontier API endpoint appearing here.
 - **`permissions.exec`** — exact commands, not categories. `["python3 scripts/verify.py"]`, never `["python3"]` alone if the tool only runs one script.

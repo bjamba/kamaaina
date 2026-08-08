@@ -36,7 +36,7 @@
 
 ## Tier & budget analysis
 
-<!-- The accounting per design/ku/context-budget.md: worst-case instruction load,
+<!-- The accounting per design/loea/context-budget.md: worst-case instruction load,
      expected session peak, which tier this lands at and the justification if >1,
      the degraded mode below it. -->
 

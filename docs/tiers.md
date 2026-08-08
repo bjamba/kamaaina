@@ -4,7 +4,7 @@ Every Class 2 artifact (a tool a local AI stack runs) must declare the minimum t
 
 ## The design rule
 
-> **Kū targets the lowest tier that can do the job.**
+> **Loea targets the lowest tier that can do the job.**
 
 A skill that works at Tier 1 works everywhere. Declaring a higher minimum tier is a cost that must be justified in the manifest — "it was easier to write" is not a justification; "the task inherently requires holding 40k tokens of source in view" might be.
 
@@ -18,7 +18,7 @@ A skill that works at Tier 1 works everywhere. Declaring a higher minimum tier i
 | Design assumption | One focused sub-task per session; aggressive external memory; no subagents | Modest multi-file reasoning; routing between instruction files is viable | Near-frontier ergonomics — but still not frontier |
 | Instruction budget (guideline) | ≤ ~2,000 tokens loaded at once | ≤ ~4,000 tokens | ≤ ~8,000 tokens |
 
-The instruction-budget guideline is elaborated in [Kū's context-budget methodology](../design/ku/context-budget.md).
+The instruction-budget guideline is elaborated in [Loea's context-budget methodology](../design/loea/context-budget.md).
 
 ## "Usable context" is not the context window
 
@@ -51,4 +51,4 @@ tier:
     notes: "Works at Tier 1 without the cross-file consistency pass; run `verify` manually afterward."
 ```
 
-`minimum` is the tier at which the tool's full behavior is supported. The optional `degraded` block documents an honest reduced mode at a lower tier — what still works, what the user must do by hand. See the [manifest schema](../design/ku/manifest-schema.md).
+`minimum` is the tier at which the tool's full behavior is supported. The optional `degraded` block documents an honest reduced mode at a lower tier — what still works, what the user must do by hand. See the [manifest schema](../design/loea/manifest-schema.md).

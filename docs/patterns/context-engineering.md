@@ -2,7 +2,7 @@
 
 A catalog of the patterns Kamaʻāina tools use to fit real work into small context windows. Each pattern includes a worked example drawn from real skills the author built for frontier stacks — including honest anti-examples of what breaks when those skills meet a local model.
 
-Treat context the way a 1980s game developer treated RAM: a hard budget, accounted for line by line. The tier instruction budgets these patterns serve are defined in [tiers.md](../tiers.md); the accounting method is in [Kū's context-budget doc](../../design/ku/context-budget.md).
+Treat context the way a 1980s game developer treated RAM: a hard budget, accounted for line by line. The tier instruction budgets these patterns serve are defined in [tiers.md](../tiers.md); the accounting method is in [Loea's context-budget doc](../../design/loea/context-budget.md).
 
 ---
 

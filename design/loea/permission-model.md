@@ -5,11 +5,11 @@ The transparency principle made mechanical: a tool **declares** everything it ca
 ## The flow
 
 ```
-manifest declares  →  Kū/installer presents  →  user approves  →  grant recorded  →  tool acts only within grant
+manifest declares  →  Loea/installer presents  →  user approves  →  grant recorded  →  tool acts only within grant
 ```
 
 1. **Declare.** The manifest's `permissions` block enumerates filesystem read/write patterns, network hosts (default `none`), and exact exec commands.
-2. **Present.** At install (or first run), each permission is shown with the manifest's stated purpose — not "allow filesystem access?" but "writes course pages under `./output/` — the skill's product." Kū generates this presentation from the manifest; a permission it can't explain is a permission the design shouldn't request.
+2. **Present.** At install (or first run), each permission is shown with the manifest's stated purpose — not "allow filesystem access?" but "writes course pages under `./output/` — the skill's product." Loea generates this presentation from the manifest; a permission it can't explain is a permission the design shouldn't request.
 3. **Approve.** The user grants per-tool, once. Declining a permission either blocks the tool or, where the manifest defines a `degraded` mode that doesn't need it, drops to that mode.
 4. **Record.** Grants land in `~/.kamaaina/grants.yaml` — human-readable, hand-editable, the user's property:
 
@@ -43,7 +43,7 @@ A new version of a tool wanting **new or broader** permissions re-prompts: the g
 
 An instruction-following LLM is not a security boundary, and this model doesn't pretend otherwise. Layers, honestly labeled:
 
-1. **Design-time (strong):** Kū simply doesn't generate skills whose procedures exceed their manifests — undeclared behavior is a generation bug, and the declared-vs-instructed diff is deterministically lintable.
+1. **Design-time (strong):** Loea simply doesn't generate skills whose procedures exceed their manifests — undeclared behavior is a generation bug, and the declared-vs-instructed diff is deterministically lintable.
 2. **Run-time instruction (soft):** generated skills carry standing instructions to check the grant before side-effecting actions and to stop-and-ask when out of bounds. Real but not tamper-proof.
 3. **Harness (strongest, out of scope):** where the user's runtime has its own sandboxing/allowlists, the manifest's `permissions` block is written to be mechanically translatable into harness configuration. v0 emits the manifest; harness adapters are future work.
 
