@@ -31,7 +31,7 @@ Every tool declares the minimum hardware/model floor it needs. Full definitions 
 2. **Not-AI when possible** — a calculator beats an LLM at arithmetic; deterministic tools first, model tokens reserved for judgment. Teach to fish.
 3. **Transparency** — every tool's manifest declares everything it touches; you can always be your own mechanic.
 
-The full argument: [docs/philosophy.md](docs/philosophy.md).
+The full argument: [docs/philosophy.md](docs/philosophy.md). Kamaʻāina is also deliberately **stack-agnostic** — it never encodes how your machine serves models; the bridge is always an OpenAI-compatible endpoint and a model name ([the boundary](docs/stack-boundary.md)).
 
 ## Start here
 

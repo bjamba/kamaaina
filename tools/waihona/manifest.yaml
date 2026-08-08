@@ -45,3 +45,9 @@ not_ai:
     implementation: "scripts/cb.py check <root>"
   - step: "Generate the deterministic Tier 1 validation fixture"
     implementation: "scripts/cb.py fixture <root>"
+  # The entry below is a development/certification-time harness, not a
+  # use-time operation: it contacts a local inference endpoint to test a
+  # model against the traversal protocol, so it sits outside the use-time
+  # permission envelope declared above (network: none still holds for use).
+  - step: "Drive and score the Tier 1 traversal validation run"
+    implementation: "scripts/validate_traversal.py (dev/certification-time; local inference endpoint only)"

@@ -146,13 +146,15 @@ When Loea designs a skill that needs persistent memory, it does not invent stora
 
 At Tier 1 (8k–16k usable), the worst case fits only in the 16k half of the range with a task present; the protocol's *typical* case (1 branch, 2 leaves ≈ 4k) fits everywhere. Skills targeting the 8k floor should declare tighter per-base caps (e.g. leaf ≤ 600) — the scaffold's `check` accepts overrides. At Tier 2+ the format is comfortable without adjustment. The scaffold tool itself is `tier.minimum: 1` (its model-facing operations are the protocol and filing — both tiny).
 
-## Validation plan (Tier 1, pending hardware run)
+## Validation plan (Tier 1)
 
-`cb.py fixture` generates a deterministic 3-level base (3 branches × 2 sub-branches × 4 leaves = 24 leaves). The certification run, on a Tier 1-class model (issue #5 acceptance):
+**Run status: pending — no certification record yet.**
+
+The harness is built: `scripts/cb.py fixture` generates a deterministic 3-level base (3 branches × 2 sub-branches × 4 leaves = 24 leaves), and `scripts/validate_traversal.py` drives and scores the run deterministically against [`validation/queries.json`](../../tools/waihona/validation/queries.json) — no LLM judging, full transcript and file-access log in the emitted `certification-run/v0` record. Procedure: [the runbook](../../docs/runbooks/tier1-traversal-validation.md).
 
 1. Query A (single-branch answer), Query B (cross-branch, 2 branches), Query C (no matching leaf — must report the gap, not hallucinate a leaf).
-2. Pass = the model reads only protocol-permitted files (transcript-checked), retrieves the right leaves for A and B, and files a gap note for C.
-3. Results recorded in this doc's status and as a certification record once #11's format exists.
+2. Pass = the model reads only protocol-permitted files (scored from the file-access log), retrieves the right leaves for A and B, and reports a gap for C. (The `_inbox.md` *write* path is not exercised by the read-only driver; it remains a skill-level concern of `file.md`.)
+3. Records land in `tools/waihona/validation/records/` and update this status line.
 
 ## Open questions
 
