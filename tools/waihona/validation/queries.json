@@ -1,0 +1,32 @@
+[
+  {
+    "id": "A",
+    "kind": "single-branch",
+    "query": "I'm picking a quant for a local model and need the quality-versus-latency tradeoff between Q4 and Q5 that we've actually observed.",
+    "required_leaves": ["models/quantization/q4-vs-q5.md"],
+    "allowed_branches": ["models"],
+    "max_leaves": 3,
+    "expect": "answer"
+  },
+  {
+    "id": "B",
+    "kind": "cross-branch",
+    "query": "On a 16 GB Apple-silicon laptop, how big a context can I actually use, and at what window size does instruction-following start to fall apart?",
+    "required_leaves": [
+      "hardware/laptops/m-series-16gb.md",
+      "models/quantization/long-context-falloff.md"
+    ],
+    "allowed_branches": ["hardware", "models"],
+    "max_leaves": 3,
+    "expect": "answer"
+  },
+  {
+    "id": "C",
+    "kind": "gap",
+    "query": "Which local speech-to-text models are usable at Tier 1?",
+    "required_leaves": [],
+    "allowed_branches": [],
+    "max_leaves": 3,
+    "expect": "gap"
+  }
+]
