@@ -148,7 +148,7 @@ At Tier 1 (8k–16k usable), the worst case fits only in the 16k half of the ran
 
 ## Validation plan (Tier 1)
 
-**Run status: pending — no certification record yet.**
+**Run status: 1 run recorded — FAIL (2026-08-08, `fast` = Qwen3.5-4B @ UD-Q4_K_XL): A and C passed, B (cross-branch) failed on unrooted path guesses and a never-entered second branch ([record](../../tools/waihona/validation/records/2026-08-08-fast.json), findings in [#18](https://github.com/bjamba/kamaaina/issues/18)). The model is below the Tier 1 floor (4B vs ~7–9B), so per the runbook this is not a Tier 1 verdict — floor-sized rerun pending.**
 
 The harness is built: `scripts/cb.py fixture` generates a deterministic 3-level base (3 branches × 2 sub-branches × 4 leaves = 24 leaves), and `scripts/validate_traversal.py` drives and scores the run deterministically against [`validation/queries.json`](../../tools/waihona/validation/queries.json) — no LLM judging, full transcript and file-access log in the emitted `certification-run/v0` record. Procedure: [the runbook](../../docs/runbooks/tier1-traversal-validation.md).
 
