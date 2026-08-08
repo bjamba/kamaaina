@@ -29,6 +29,15 @@ Kū's defining behavioral commitment, applied to itself and to every skill it cr
 
 This is Principle 3 ("be your own mechanic") made operational: the manifest is the exploded parts diagram, and Kū never ships a sealed unit.
 
+## Kū eats its own cooking
+
+Kū is not exempt from anything it enforces. Self-application is a design requirement, not an aspiration, and it goes beyond fitting the instruction budgets:
+
+- **Storage.** Kū's own working state — the setup interview's stack profile, in-progress skill designs, the record of skills it has generated and the manifests it has emitted — lives in the same external-memory structures it prescribes (declared `state_files`, context-base conventions), never in conversation memory. The stack profile in particular is long-term storage: measured once, reused by every future Kū session and every skill it designs.
+- **Session discipline.** A skill design is a long dialogue; Kū runs it as its own patterns demand — decomposed steps, checkpoint compaction at each journey stage, and the litmus test honored: kill Kū between any two stages and a fresh session resumes the design cold from state files alone.
+- **Optimization.** Every deterministic step in Kū's own procedure (probing the stack, counting tokens, emitting scaffolds from templates, diffing grants) is a script in Kū's `not_ai` block, not model work. Kū's routing is real routing: one journey stage's instructions loaded at a time.
+- **The audit.** Kū's own `manifest.yaml` is reviewed against the same bar as any tool it generates — and the validator must pass on it. If following Kū's methodology produces a Kū that can't run at a low tier, that is evidence against the methodology and gets fixed in the methodology, not waived for the tool.
+
 ## v0 scope
 
 - **In:** the journey above, for single skills, targeting Tiers 1–3; manifest generation; the grants-file workflow; scaffolds built from the five core patterns.
