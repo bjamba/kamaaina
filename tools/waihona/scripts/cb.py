@@ -1,8 +1,28 @@
 #!/usr/bin/env python3
-"""cb.py — deterministic maintenance for a Kamaʻāina context-base (waihona).
+"""Maintenance commands for a Kamaʻāina context-base (waihona).
 
-Commands: init | reindex | check | fixture
-Spec: design/context-base/context-base.md. Stdlib only, offline, exit 0/1.
+A context-base is a directory of small markdown "leaf" files, each holding
+one topic's worth of facts, organized under branch directories. Every
+directory carries an INDEX.md listing what lives below it, one line per
+entry, so an AI model can find the right leaf by reading indexes instead
+of loading the whole tree. The full format is specified in
+design/context-base/context-base.md.
+
+The model-facing side of that workflow (how to traverse, how to file new
+facts) lives in the instruction files next to this script. Everything
+mechanical belongs here instead: building indexes, enforcing size limits,
+and spotting drift between an index and the files it describes. The point
+is that no model ever counts tokens or maintains an index by hand — that
+work is deterministic, so a script does it.
+
+Four commands, all offline, standard library only:
+
+    init     create an empty context-base (root INDEX.md and _inbox.md)
+    reindex  rebuild every INDEX.md from what is actually on disk
+    check    report violations of the format's rules (exit 1 if any)
+    fixture  build the deterministic demo base used for validation runs
+
+Run as: python3 cb.py <command> <base-root> [--max-leaf-tokens N ...]
 """
 import argparse
 import datetime
@@ -18,11 +38,25 @@ PLACEHOLDER = "> (purpose not yet written)"
 
 
 def est_tokens(text: str) -> int:
+    """Estimate how many tokens a piece of text costs a model to read.
+
+    Uses the ~4 characters-per-token rule of thumb from the project's
+    context-budget methodology (design/ku/context-budget.md). It is the
+    fallback when no real tokenizer is available, which on a
+    zero-dependency script is always.
+    """
     return math.ceil(len(text) / 4)
 
 
 def parse_frontmatter(path: Path):
-    """Return (dict, body) for a ----delimited key: value frontmatter block."""
+    """Split a leaf file into its metadata and its content.
+
+    A leaf starts with a frontmatter block — simple "key: value" lines
+    between two "---" lines — carrying its one-line summary and its
+    last-updated date. Returns (metadata dict, body text); a file with no
+    frontmatter block comes back with an empty dict and the full text,
+    which `check` will then flag as a rule violation rather than an error.
+    """
     text = path.read_text(encoding="utf-8")
     if not text.startswith("---\n"):
         return {}, text
@@ -38,6 +72,14 @@ def parse_frontmatter(path: Path):
 
 
 def purpose_line(index_path: Path) -> str:
+    """Return a directory's one-line purpose from its INDEX.md.
+
+    The purpose line (the single "> ..." line near the top of an index)
+    is the only hand-authored part of an index — everything else is
+    regenerated. This helper exists so `reindex` can carry the human's
+    line forward, and so a parent index can describe its branches using
+    their own purpose lines. Returns a placeholder if none is written yet.
+    """
     if index_path.exists():
         for line in index_path.read_text(encoding="utf-8").splitlines():
             if line.startswith("> "):
@@ -46,6 +88,12 @@ def purpose_line(index_path: Path) -> str:
 
 
 def leaves_and_branches(d: Path):
+    """List a directory's leaf files and branch subdirectories.
+
+    Leaves are any markdown files except the special INDEX.md and
+    _inbox.md; branches are visible subdirectories. Both come back sorted
+    so that every command produces the same output for the same tree.
+    """
     leaves = sorted(p for p in d.iterdir()
                     if p.is_file() and p.suffix == ".md" and p.name not in SPECIAL)
     branches = sorted(p for p in d.iterdir()
@@ -54,6 +102,14 @@ def leaves_and_branches(d: Path):
 
 
 def build_index(d: Path, root: Path) -> str:
+    """Compose the INDEX.md content for one directory.
+
+    The result is a title, the preserved purpose line, then one line per
+    branch and per leaf. Every entry's description is pulled from the
+    child itself — a branch's purpose line, a leaf's summary — which is
+    what makes indexes trustworthy: they can always be rebuilt from what
+    is actually on disk, and `check` treats any difference as drift.
+    """
     title = "Context-base" if d == root else d.name
     lines = [f"# {title}", purpose_line(d / "INDEX.md"), ""]
     leaves, branches = leaves_and_branches(d)
@@ -74,6 +130,11 @@ def build_index(d: Path, root: Path) -> str:
 
 
 def walk_dirs(root: Path):
+    """Yield the base root and every branch directory under it.
+
+    Hidden directories are skipped, and the order is stable so commands
+    visit (and report on) directories the same way every run.
+    """
     yield root
     for p in sorted(root.rglob("*")):
         if p.is_dir() and not p.name.startswith("."):
@@ -81,6 +142,12 @@ def walk_dirs(root: Path):
 
 
 def cmd_init(root: Path, _cfg) -> int:
+    """Create a new, empty context-base at the given root.
+
+    Writes a root INDEX.md with a placeholder purpose line and an empty
+    _inbox.md. Refuses to run where an INDEX.md already exists, so it can
+    never overwrite a base someone is using.
+    """
     root.mkdir(parents=True, exist_ok=True)
     idx = root / "INDEX.md"
     if idx.exists():
@@ -96,6 +163,12 @@ def cmd_init(root: Path, _cfg) -> int:
 
 
 def cmd_reindex(root: Path, _cfg) -> int:
+    """Rebuild every INDEX.md in the base from what is actually on disk.
+
+    Safe to run at any time: hand-written purpose lines are preserved,
+    and everything else is regenerated from leaf frontmatter. This is the
+    mechanical fix for any "drifted" finding that `check` reports.
+    """
     # Bottom-up so parent indexes see fresh child purpose lines.
     for d in reversed(list(walk_dirs(root))):
         (d / "INDEX.md").write_text(build_index(d, root), encoding="utf-8")
@@ -104,6 +177,17 @@ def cmd_reindex(root: Path, _cfg) -> int:
 
 
 def cmd_check(root: Path, cfg) -> int:
+    """Report everything in the base that breaks the format's rules.
+
+    Findings come in two severities. Problems (exit code 1) are rule
+    violations: oversized leaves or indexes, indexes that have drifted
+    from the files they describe, missing summaries, excessive depth.
+    Warnings don't fail the check but deserve attention, like an inbox
+    piling up unfiled facts. Each message says what to do next — some
+    fixes are mechanical (run `reindex`), while others need judgment
+    (splitting an oversized leaf into coherent smaller topics), which is
+    exactly the line this tool draws between script work and model work.
+    """
     problems, warnings = [], []
     if not (root / "INDEX.md").exists():
         print(f"not a context-base (no INDEX.md): {root}")
@@ -157,7 +241,14 @@ def cmd_check(root: Path, cfg) -> int:
 
 
 def cmd_fixture(root: Path, _cfg) -> int:
-    """Deterministic fixture for the Tier 1 traversal validation (spec §Validation plan)."""
+    """Build the demo base used to validate traversal on small models.
+
+    Produces a fixed three-branch tree (each branch: two sub-branches of
+    four leaves) with deterministic content, per the spec's Validation
+    plan. Deterministic on purpose: every run yields an identical base,
+    so validation transcripts are comparable across models and machines.
+    Refuses to write into a non-empty directory.
+    """
     if root.exists() and any(root.iterdir()):
         print(f"refusing: {root} is not empty")
         return 1
@@ -226,6 +317,12 @@ def cmd_fixture(root: Path, _cfg) -> int:
 
 
 def main() -> int:
+    """Parse the command line and dispatch to the command functions.
+
+    Every sizing rule from the spec has a default here and a matching
+    override flag — for example `--max-leaf-tokens 600` for a base that
+    must serve a stricter Tier 1 machine.
+    """
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("command", choices=["init", "reindex", "check", "fixture"])
     ap.add_argument("root", type=Path)
