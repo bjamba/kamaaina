@@ -37,9 +37,10 @@ The full argument: [docs/philosophy.md](docs/philosophy.md).
 
 1. [Philosophy](docs/philosophy.md) — why this exists and the three principles.
 2. [Tiers](docs/tiers.md) — the hardware floors everything is designed against.
-3. [Context engineering patterns](docs/patterns/context-engineering.md) — the pattern catalog, with real worked examples and anti-examples.
-4. [Loea design](design/loea/overview.md) — the skill-creator that enforces all of the above: [manifest schema](design/loea/manifest-schema.md) · [permission model](design/loea/permission-model.md) · [context budgets](design/loea/context-budget.md).
-5. [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md).
+3. [The same skill, built two ways](docs/examples/release-notes-walkthrough.md) — a worked example of a frontier-habit build failing at the tiers, and the Kamaʻāina build that doesn't. The fastest way to feel what this ADK is for.
+4. [Context engineering patterns](docs/patterns/context-engineering.md) — the pattern catalog, with real worked examples and anti-examples.
+5. [Loea design](design/loea/overview.md) — the skill-creator that enforces all of the above: [manifest schema](design/loea/manifest-schema.md) · [permission model](design/loea/permission-model.md) · [context budgets](design/loea/context-budget.md).
+6. [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md).
 
 ## About the name
 
