@@ -41,7 +41,7 @@ def est_tokens(text: str) -> int:
     """Estimate how many tokens a piece of text costs a model to read.
 
     Uses the ~4 characters-per-token rule of thumb from the project's
-    context-budget methodology (design/ku/context-budget.md). It is the
+    context-budget methodology (design/loea/context-budget.md). It is the
     fallback when no real tokenizer is available, which on a
     zero-dependency script is always.
     """
