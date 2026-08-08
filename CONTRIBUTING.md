@@ -4,7 +4,7 @@ Thanks for wanting to build local-first. One rule sits above everything:
 
 > **Every contribution is exactly one of the two artifact classes.**
 > **Class 1** — human-directed documentation (research, best practices, theory) → `docs/` or `design/`.
-> **Class 2** — a local-AI-directed tool → `tools/`, and it **must carry a `manifest.yaml`** ([schema](design/ku/manifest-schema.md)).
+> **Class 2** — a local-AI-directed tool → `tools/`, and it **must carry a `manifest.yaml`** ([schema](design/loea/manifest-schema.md)).
 
 If a contribution is neither a doc a human would read nor a tool a local stack can run, it doesn't belong here yet — open an issue and let's find its shape first.
 
@@ -14,7 +14,7 @@ If a contribution is neither a doc a human would read nor a tool a local stack c
 - **Lowest tier that can do the job.** A minimum tier above 1 requires a written justification in the manifest. Design against the [pattern × tier table](docs/patterns/context-engineering.md#pattern--tier-requirements).
 - **Not-AI-first.** PRs for Class 2 tools should be able to answer, step by step: *why does this step need a model?* The manifest's `not_ai` block is where the deterministic answers live; an empty one will be questioned.
 - **Transparency.** Everything a tool touches — files, network, executables, state — is declared in its manifest. Undeclared behavior is a bug.
-- **Naming & orthography.** Proper Hawaiian orthography in prose (Kamaʻāina, Kū), ASCII in paths and identifiers — full rule and glossary in [docs/naming.md](docs/naming.md). New Hawaiian-derived names are part of design review, and cultural corrections are always welcome as issues.
+- **Naming & orthography.** Proper Hawaiian orthography in prose (Kamaʻāina, Loea), ASCII in paths and identifiers — full rule and glossary in [docs/naming.md](docs/naming.md). New Hawaiian-derived names are part of design review, and cultural corrections are always welcome as issues.
 
 ## How to propose
 

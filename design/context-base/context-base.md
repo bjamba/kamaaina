@@ -10,7 +10,7 @@
 
 Pattern 2 of the [context engineering catalog](../../docs/patterns/context-engineering.md) — external memory a small model can traverse — is mandatory at Tiers 1–2, which means nearly every Kamaʻāina tool depends on it. Until now it has been a prose sketch. Without a concrete format: every tool invents its own state layout, tools cannot share memory, and "the model traverses an index" is a hope rather than a procedure a 7B model reliably executes.
 
-This document is the reference design: the on-disk format, the sizing rules that keep every read within budget, the traversal protocol written as instructions a small model follows, the write path, and the interface Kū uses when designing skills around it.
+This document is the reference design: the on-disk format, the sizing rules that keep every read within budget, the traversal protocol written as instructions a small model follows, the write path, and the interface Loea uses when designing skills around it.
 
 ## Constraints
 
@@ -75,7 +75,7 @@ updated: 2026-08-08
 
 ### Sizing rules and the split procedure
 
-Token counts use the conservative estimator from [context-budget.md](../ku/context-budget.md) (~4 chars/token) unless a real tokenizer is configured.
+Token counts use the conservative estimator from [context-budget.md](../loea/context-budget.md) (~4 chars/token) unless a real tokenizer is configured.
 
 When `check` flags an oversized leaf or index:
 1. **The script flags; it does not split content.** Semantic splitting is judgment — model or human work.
@@ -120,14 +120,14 @@ New knowledge never edits the tree directly mid-task:
 - A leaf that *supersedes* another says so in its body ("supersedes: <leaf>, <date>") and the filing pass deletes or rewrites the loser — conflicts get resolved at filing time, not carried forever.
 - No locking. A waihona is single-user by design; concurrent writers are out of scope for v0 (open question).
 
-### Interface for Kū and generated skills
+### Interface for Loea and generated skills
 
-When Kū designs a skill that needs persistent memory, it does not invent storage; it declares waihona residency:
+When Loea designs a skill that needs persistent memory, it does not invent storage; it declares waihona residency:
 
 - The skill's `state_files` entries point into a base (`~/.kamaaina/context-base/<branch>/…` for durable cross-skill knowledge, `./context-base/…` for project-local), with `lifecycle: persistent`.
 - The skill's instructions embed the traversal protocol for reads and the inbox convention for writes — both by reference to short, fixed text blocks so the cost to the skill's instruction budget is bounded (the protocol op file measures ~240 tokens).
-- Maintenance is never the skill's job: manifests declare `exec: ["python3 <waihona>/scripts/cb.py …"]` for `reindex`/`check`, and Kū schedules them at checkpoint boundaries.
-- Kū's own long-term state (the stack profile, generated-skills record — per the ["eats its own cooking" contract](../ku/overview.md#kū-eats-its-own-cooking)) is the first resident.
+- Maintenance is never the skill's job: manifests declare `exec: ["python3 <waihona>/scripts/cb.py …"]` for `reindex`/`check`, and Loea schedules them at checkpoint boundaries.
+- Loea's own long-term state (the stack profile, generated-skills record — per the ["eats its own cooking" contract](../loea/overview.md#loea-eats-its-own-cooking)) is the first resident.
 
 ## Alternatives considered
 

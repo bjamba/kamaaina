@@ -1,6 +1,6 @@
 # Context-Budget Methodology (draft)
 
-How Kū decides whether a skill fits its target tier — and how it keeps skills honest about it. This is memory accounting: the window is RAM, and the budget is counted before anything ships.
+How Loea decides whether a skill fits its target tier — and how it keeps skills honest about it. This is memory accounting: the window is RAM, and the budget is counted before anything ships.
 
 ## The accounting identity
 
@@ -11,7 +11,7 @@ usable_context = raw_window − harness_overhead − instruction_load − answer
 ```
 
 - **raw_window** — what the model/runtime actually provides (measured, not spec-sheet).
-- **harness_overhead** — system prompt, tool definitions, harness scaffolding. Measured once per stack during Kū's setup interview.
+- **harness_overhead** — system prompt, tool definitions, harness scaffolding. Measured once per stack during Loea's setup interview.
 - **instruction_load** — every instruction token loaded *simultaneously*: entry router + the active routed file + all references that file mandates + relevant manifest/state excerpts. This is the number `context_budget.instructions_max_tokens` declares, computed at worst case across all routes.
 - **answer_headroom** — reserved space for the model's own output plus in-flight tool results. Skills that generate files need real headroom; a rule of thumb is at least 25% of the raw window.
 
@@ -28,7 +28,7 @@ Both are measured claims. Counting tokens is deterministic work: the manifest va
 
 ## Techniques for staying under budget
 
-In the order Kū applies them (details in the [patterns catalog](../../docs/patterns/context-engineering.md)):
+In the order Loea applies them (details in the [patterns catalog](../../docs/patterns/context-engineering.md)):
 
 1. **Route harder** — anything not needed by the current step moves behind the router. Help text, rare paths, and reference prose are the usual bloat.
 2. **Externalize invariants** — facts that must survive across steps go to state files re-read on demand, not instructions held throughout.

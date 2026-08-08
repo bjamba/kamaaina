@@ -38,7 +38,7 @@ The full argument: [docs/philosophy.md](docs/philosophy.md).
 1. [Philosophy](docs/philosophy.md) — why this exists and the three principles.
 2. [Tiers](docs/tiers.md) — the hardware floors everything is designed against.
 3. [Context engineering patterns](docs/patterns/context-engineering.md) — the pattern catalog, with real worked examples and anti-examples.
-4. [Kū design](design/ku/overview.md) — the skill-creator that enforces all of the above: [manifest schema](design/ku/manifest-schema.md) · [permission model](design/ku/permission-model.md) · [context budgets](design/ku/context-budget.md).
+4. [Loea design](design/loea/overview.md) — the skill-creator that enforces all of the above: [manifest schema](design/loea/manifest-schema.md) · [permission model](design/loea/permission-model.md) · [context budgets](design/loea/context-budget.md).
 5. [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md).
 
 ## About the name
@@ -47,7 +47,7 @@ The full argument: [docs/philosophy.md](docs/philosophy.md).
 
 ## Status
 
-Early. `tools/` is empty on purpose — the current milestone is foundation documentation, with Kū v0 next. Follow the [roadmap](ROADMAP.md) and issues.
+Early. Foundation docs and the first tool ([Waihona](tools/waihona/), the context-base) are in; Loea v0 is next. Follow the [roadmap](ROADMAP.md) and issues.
 
 ## License
 
