@@ -1,0 +1,334 @@
+{
+  "record": "certification-run/v0",
+  "tool": "waihona",
+  "operation": "find",
+  "tier_claimed": 1,
+  "run": {
+    "date": "2026-08-08",
+    "operator": "bjamba",
+    "endpoint_type": "openai-chat-completions",
+    "model": "fast",
+    "quantization": "UD-Q4_K_XL",
+    "params": "4B",
+    "temperature": 0,
+    "seed": null,
+    "driver": "validate_traversal.py/v0"
+  },
+  "fixture": {
+    "generator": "scripts/cb.py fixture",
+    "shape": "3 branches x 2 sub-branches x 4 leaves",
+    "leaves": 24
+  },
+  "inbox_write_path": "not exercised \u2014 driver is read-only; the write path (file.md) is a skill-level concern, validated separately",
+  "queries": [
+    {
+      "id": "A",
+      "kind": "single-branch",
+      "pass": true,
+      "criteria": {
+        "completed": true,
+        "first_read_root": true,
+        "all_reads_listed": true,
+        "no_missing_files": true,
+        "branches_within_limit": true,
+        "leaves_within_limit": true,
+        "leaf_after_its_index": true,
+        "inbox_never_read": true,
+        "required_leaves_read": true
+      },
+      "leaves_read": [
+        "models/quantization/q4-vs-q5.md"
+      ],
+      "branches_entered": [
+        "models"
+      ],
+      "precision_extra": [],
+      "terminal": {
+        "action": "ANSWER",
+        "argument": "models/quantization/q4-vs-q5.md",
+        "reason": null
+      },
+      "file_access_log": [
+        {
+          "turn": 1,
+          "path": "INDEX.md",
+          "exists": true,
+          "is_index": true,
+          "is_leaf": false,
+          "is_inbox": false,
+          "listed": true
+        },
+        {
+          "turn": 2,
+          "path": "models/INDEX.md",
+          "exists": true,
+          "is_index": true,
+          "is_leaf": false,
+          "is_inbox": false,
+          "listed": true
+        },
+        {
+          "turn": 3,
+          "path": "models/quantization/INDEX.md",
+          "exists": true,
+          "is_index": true,
+          "is_leaf": false,
+          "is_inbox": false,
+          "listed": true
+        },
+        {
+          "turn": 4,
+          "path": "models/quantization/q4-vs-q5.md",
+          "exists": true,
+          "is_index": false,
+          "is_leaf": true,
+          "is_inbox": false,
+          "listed": true
+        }
+      ],
+      "transcript": [
+        {
+          "turn": 1,
+          "reply": "READ: INDEX.md",
+          "noise": false
+        },
+        {
+          "turn": 2,
+          "reply": "READ: models/INDEX.md",
+          "noise": false
+        },
+        {
+          "turn": 3,
+          "reply": "READ: models/quantization/INDEX.md",
+          "noise": false
+        },
+        {
+          "turn": 4,
+          "reply": "READ: models/quantization/q4-vs-q5.md",
+          "noise": false
+        },
+        {
+          "turn": 5,
+          "reply": "ANSWER: models/quantization/q4-vs-q5.md",
+          "noise": false
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "kind": "cross-branch",
+      "pass": false,
+      "criteria": {
+        "completed": true,
+        "first_read_root": true,
+        "all_reads_listed": false,
+        "no_missing_files": false,
+        "branches_within_limit": true,
+        "leaves_within_limit": true,
+        "leaf_after_its_index": true,
+        "inbox_never_read": true,
+        "required_leaves_read": false
+      },
+      "leaves_read": [
+        "hardware/laptops/m-series-16gb.md",
+        "hardware/laptops/thermal-floor.md"
+      ],
+      "branches_entered": [
+        "hardware"
+      ],
+      "precision_extra": [
+        "hardware/laptops/thermal-floor.md"
+      ],
+      "terminal": {
+        "action": "GAP",
+        "argument": "hardware/laptops/m-series-16gb | 16 GB Apple-silicon context limits and instruction-following degradation points | The leaf contains only deterministic filler content; no actual measured data on context size limits or window size thresholds for instruction-following",
+        "reason": null
+      },
+      "file_access_log": [
+        {
+          "turn": 1,
+          "path": "INDEX.md",
+          "exists": true,
+          "is_index": true,
+          "is_leaf": false,
+          "is_inbox": false,
+          "listed": true
+        },
+        {
+          "turn": 2,
+          "path": "hardware/INDEX.md",
+          "exists": true,
+          "is_index": true,
+          "is_leaf": false,
+          "is_inbox": false,
+          "listed": true
+        },
+        {
+          "turn": 3,
+          "path": "laptops/INDEX.md",
+          "exists": false,
+          "is_index": true,
+          "is_leaf": false,
+          "is_inbox": false,
+          "listed": false
+        },
+        {
+          "turn": 4,
+          "path": "dgx-spark/INDEX.md",
+          "exists": false,
+          "is_index": true,
+          "is_leaf": false,
+          "is_inbox": false,
+          "listed": false
+        },
+        {
+          "turn": 5,
+          "path": "hardware/laptops/INDEX.md",
+          "exists": true,
+          "is_index": true,
+          "is_leaf": false,
+          "is_inbox": false,
+          "listed": true
+        },
+        {
+          "turn": 6,
+          "path": "hardware/laptops/m-series-16gb.md",
+          "exists": true,
+          "is_index": false,
+          "is_leaf": true,
+          "is_inbox": false,
+          "listed": true
+        },
+        {
+          "turn": 7,
+          "path": "hardware/laptops/thermal-floor.md",
+          "exists": true,
+          "is_index": false,
+          "is_leaf": true,
+          "is_inbox": false,
+          "listed": true
+        }
+      ],
+      "transcript": [
+        {
+          "turn": 1,
+          "reply": "READ: INDEX.md",
+          "noise": false
+        },
+        {
+          "turn": 2,
+          "reply": "READ: hardware/INDEX.md",
+          "noise": false
+        },
+        {
+          "turn": 3,
+          "reply": "READ: laptops/INDEX.md",
+          "noise": false
+        },
+        {
+          "turn": 4,
+          "reply": "READ: dgx-spark/INDEX.md",
+          "noise": false
+        },
+        {
+          "turn": 5,
+          "reply": "READ: hardware/laptops/INDEX.md",
+          "noise": false
+        },
+        {
+          "turn": 6,
+          "reply": "READ: hardware/laptops/m-series-16gb.md",
+          "noise": false
+        },
+        {
+          "turn": 7,
+          "reply": "READ: hardware/laptops/thermal-floor.md",
+          "noise": false
+        },
+        {
+          "turn": 8,
+          "reply": "GAP: hardware/laptops/m-series-16gb | 16 GB Apple-silicon context limits and instruction-following degradation points | The leaf contains only deterministic filler content; no actual measured data on context size limits or window size thresholds for instruction-following",
+          "noise": false
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "kind": "gap",
+      "pass": true,
+      "criteria": {
+        "completed": true,
+        "first_read_root": true,
+        "all_reads_listed": true,
+        "no_missing_files": true,
+        "branches_within_limit": true,
+        "leaves_within_limit": true,
+        "leaf_after_its_index": true,
+        "inbox_never_read": true,
+        "gap_honored": true
+      },
+      "leaves_read": [],
+      "branches_entered": [
+        "models"
+      ],
+      "precision_extra": [],
+      "terminal": {
+        "action": "GAP",
+        "argument": "models/speech-to-text | speech-to-text models not found in context-base | The context-base contains text generation model families (llama, mistral, phi, qwen) but no speech-to-text model information",
+        "reason": null
+      },
+      "file_access_log": [
+        {
+          "turn": 1,
+          "path": "INDEX.md",
+          "exists": true,
+          "is_index": true,
+          "is_leaf": false,
+          "is_inbox": false,
+          "listed": true
+        },
+        {
+          "turn": 2,
+          "path": "models/INDEX.md",
+          "exists": true,
+          "is_index": true,
+          "is_leaf": false,
+          "is_inbox": false,
+          "listed": true
+        },
+        {
+          "turn": 3,
+          "path": "models/families/INDEX.md",
+          "exists": true,
+          "is_index": true,
+          "is_leaf": false,
+          "is_inbox": false,
+          "listed": true
+        }
+      ],
+      "transcript": [
+        {
+          "turn": 1,
+          "reply": "READ: INDEX.md",
+          "noise": false
+        },
+        {
+          "turn": 2,
+          "reply": "READ: models/INDEX.md",
+          "noise": false
+        },
+        {
+          "turn": 3,
+          "reply": "READ: models/families/INDEX.md",
+          "noise": false
+        },
+        {
+          "turn": 4,
+          "reply": "GAP: models/speech-to-text | speech-to-text models not found in context-base | The context-base contains text generation model families (llama, mistral, phi, qwen) but no speech-to-text model information",
+          "noise": false
+        }
+      ]
+    }
+  ],
+  "result": "fail"
+}
