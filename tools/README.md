@@ -2,7 +2,11 @@
 
 This directory holds Kamaʻāina's **Class 2 artifacts** — local-AI-directed tools, immediately usable by a local model stack at their declared [tier](../docs/tiers.md). Nothing here may require a frontier model at use-time.
 
-**Empty on purpose.** The first inhabitants arrive with Milestone 2: the manifest validator and Kū v0 (design in [`design/ku/`](../design/ku/)).
+Current inhabitants:
+
+- [`waihona/`](waihona/) — context-base scaffold & maintenance ([spec](../design/context-base/context-base.md)); Tier 1, `network: none`
+
+Arriving with Milestone 2: the manifest validator and Kū v0 (design in [`design/ku/`](../design/ku/)).
 
 ## Required structure
 
