@@ -18,6 +18,7 @@ The keystone tool, built to its own rules ([design](design/ku/overview.md)):
 - **Manifest validator.** Deterministic linter for `manifest.yaml` (schema check, token counting, grant/manifest drift) — the first inhabitant of `tools/`, and a not-AI artifact by design.
 - **Permission grants file.** `~/.kamaaina/grants.yaml` read/write, presentation generation, and escalation-on-diff per the [permission model](design/ku/permission-model.md).
 - **Context-base reference design.** The indexed, budget-chunked external-memory format and its traversal protocol ([pattern 2](docs/patterns/context-engineering.md)) — a Class 1 spec plus a Class 2 scaffold tool.
+- **Benchmarking & testing suite.** A CLI (offline, stdlib-only) plus a GitHub Action running the same checks — manifest validation, budget measurement, repo lints, and verification of checked-in tier-certification records — so every artifact developed for Kamaʻāina is held to the standards mechanically. CI verifies records; contributors run the models.
 
 ## Milestone 3 — First refactors
 
