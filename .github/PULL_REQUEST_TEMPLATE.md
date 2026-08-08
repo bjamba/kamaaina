@@ -3,13 +3,33 @@
      artifact classes → docs/philosophy.md · tiers → docs/tiers.md
      manifests → the manifest-schema.md doc under design/ -->
 
-## What & why
+## Deliverable
 
-<!-- What this PR changes and the problem it solves. Link the issue(s) it addresses.
-     Write for a reader who has never seen this repo: name the problem in plain
-     language before using any project terminology. -->
+<!-- FIRST THING a reviewer reads: what this PR ships, and in what form.
+     One or two sentences, concrete: "A new doc at docs/x.md that ...",
+     "A working tool at tools/y/ with commands a, b, c." The reviewer should
+     know exactly what they are getting before reading anything else. -->
+
+## Problem it solves
+
+<!-- The problem in plain language, before any project terminology.
+     What was broken, missing, or unknown — and for whom. Link the issue(s). -->
 
 Closes #
+
+## Where this sits
+
+<!-- Roadmap position, so this PR is legible against the bigger picture:
+     - Which milestone this advances, and which issue(s) it executes
+     - What it builds on and what it unblocks (issues/PRs by number)
+     - What related work is deliberately NOT here, and where that work lives
+     - If stacked on other PRs: the merge order -->
+
+## Terminology
+
+<!-- Define, in one line each, any repo-specific term the sections above or the
+     checklists below rely on (artifact class, tier, manifest, tool names...).
+     Delete lines the PR doesn't use; never assume the reader knows the jargon. -->
 
 ## Artifact class
 
